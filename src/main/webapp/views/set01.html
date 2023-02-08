@@ -4,8 +4,8 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/main.css" rel="stylesheet" type="text/css">
-    <script src="/js/mainLogic.js"></script>
+    <link href="../../resources/css/main.css" rel="stylesheet" type="text/css">
+    <script src="../../resources/js/mainLogic.js"></script>
     <title>대상설정</title>
 </head>
 <body>
@@ -94,22 +94,19 @@
 <script>
 
     
-    const people = new Array(13);
+    let windowPeople;
 
     window.onload = openstart;
     function openstart()
     {
+        let strparam = getParameterByName();
+        windowPeople= strparam;
         reseting();
     }
 
     function reseting()
     {
-
-        let strparam = getParameterByName('param');
-        alert(strparam);
-        let parmArray = strparam.split("^^");
-        alert(parmArray);
-        //people = parmArray;
+        let people = [...windowPeople];
 
         for(let i=0; i<people.length; i++)
         {
@@ -121,12 +118,14 @@
             }
             document.getElementById(componentId).value = people[i];   
         }
+
+        windowPeople = [...people];
     }
 
     function retrunSetVal()
     {
         let peopleArr =[];
-        for(let i=0; i<people.length; i++)
+        for(let i=0; i<13; i++)
         {
             let compNum = i+1;
             let componentId = "nameinput0"+compNum;
@@ -134,21 +133,21 @@
             {
                 componentId="nameinput"+compNum;
             }
-            opener.peopleNames[i] = document.getElementById(componentId).value;   
+            let getValue = document.getElementById(componentId).value;
+            opener.peopleNames[i] = getValue;   
         }
-        peopleArr = people;
+        peopleArr = [...windowPeople];
         window.opener.setPeople(peopleArr);
-        window.close();s
+        window.close();
     }
 
-    function getParameterByName(name) {
-        let url = window.location.search;
-        url = JSON.parse(url);
-        const urlParams = url.searchParams;ß
-        
-        let param =urlParams.get(name);
-        return param
+    function getParameterByName() {
+        let url = decodeURI(location.search);
+        let urls = url.split("=");
+        let urlsArr=urls[1].split("^^")
+        return urlsArr;
     }
+
 
 
 

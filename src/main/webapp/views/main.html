@@ -33,7 +33,7 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
         if(val==0)
         {
             let url01 = "set01.html";
-            let strparam = peopleNames.join("^^");
+            let strparam = encodeURI(peopleNames.join("^^"));
             url01 = url01 + "?"+"param ="+strparam;
             window.open(url01, "대상설정", options);
 
