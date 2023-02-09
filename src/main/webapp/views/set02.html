@@ -4,72 +4,185 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="/main.css" rel="stylesheet" type="text/css">
-    <script src="/js/mainLogic.js"></script>
+    <link rel="stylesheet" href="../resources/css/main.css" rel="stylesheet" type="text/css"/>
+    <script src="../resources/js/mainLogic.js"></script>
     <title>픽스설정</title>
 </head>
 <body>
     <div>
         <div class="textTi"><spen>픽스 설정</spen></div>
         <div class="textTiSub"><spen>업무를 픽스할 달과 해당 업무를 선택한다</spen></div>
-        <button class="reBtnS" id="endBtn">종료</button>
+        <button class="reBtnS" id="endBtn" onclick="ending()">종료</button>
         <button class="reBtnS" id="resetBtn" onclick="reseting()">재배치</button>
+        <button class="startBtnS" id="mainBtn" onclick="retrunSetVal()">설정완료</button>
+        <!-- todo  -->
+        <!-- 픽스를 위한 컴포넌트를 추가하는 버튼. 클릭시 번호텍스트, 이름, 픽스달, 픽스자리 선택을 위한 드롭박스가 출력되어야 한다 -->
     </div>
 
-    <div>
-        <form name="inputForm" id="inputForm" methodh="get" onsubmit="retrunSetVal()">
-            <button class="startBtnS" id="mainBtn" onclick="retrunSetVal()">설정완료</button>
-
-            <div id="chg">
-                <br><br>
-            </div>
-
-        </form>
-
+    <div id="content">
     </div>
 </body>
 <script>
+    let monthMap = new Map();
+    let shiftMap = new Map();
+    let people = [];
 
+    window.onload = openstart;
     function openstart(event)
     {
-        reseting();
+        let strparam = getParameter();
+
+        if(false != strparam[0])
+        {
+            //분리한 파라매터를 조립한다
+            let tempParam = strparam[1];
+            people = tempParam[0];
+            let lengths = tempParam[1].length;
+            for(let i=0;i<lengths;i++)
+            {
+                monthMap.set(tempParam[1][i], tempParam[3][i]);
+            }
+            
+            for(let x=0;x<lengths;x++)
+            {
+                shiftMap.set(tempParam[2][x], tempParam[4][x]);
+            }
+
+            seting();
+        }
+        else
+        {
+            //첫 세팅 화면 진입 경우, 1개의 선택 컴포넌트를 생성한다
+            nameArr = strparam[1];
+            let theParent = document.getElementById("content");
+            theParent.innerHTML="<span>01 </span>"
+
+            let selectList = document.createElement("select");
+            selectList.id ="select0";
+            theParent.appendChild(selectList);
+            for(let i=0;i<nameArr.length;i++)
+            {
+                let options = document.createElement("option");
+                options.value=i;
+                options.text=nameArr[i];
+                selectList.appendChild(options);
+            }
+        }
     }
 
-    function reseting()
+    function seting()
     {
-        for(let i=0; i<people.length; i++)
+        //메인화면에서 가져온 값으로 이미 설정된 픽스값 세팅
+        let theParent = document.getElementById("content");
+        let str ="<div id='innerDiv01'></div>";
+        for(let i=0; i<monthMap.size; i++)
         {
-            let compNum = i+1;
-            let componentId = "nameinput0"+compNum;
-            if(compNum>9)
+            str = str+ "<div id=";
+            if(i<9)
             {
-                componentId="nameinput"+compNum;
+                str = str+"'innerDiv0"+(i+1)+"'> </div>"
             }
-            document.getElementById(componentId).value = window.opener.peopleNames[i];   
+            else
+            {
+                str = str+"'innerDiv"+(i+1)+"'> </div>"
+            }
+           
+            theParent.innerHTML =str;
+        }
+
+        for(let i=0; i<monthMap.size; i++)
+        {
+            let divParent;
+            if(i<9)
+            {
+                divParent = document.getElementById("innerDiv0"+(i+1));
+                divParent.innerText ="0"+(i+1)+" ";
+            }
+            else
+            {
+                divParent = document.getElementById("innerDiv"+(i+1));
+                divParent.innerText= i+" ";
+            }
+
+            let selectList = document.createElement("select");
+            selectList.id = "select"+i;
+            divParent.appendChild(selectList);
+            for(let x=0;x<people.length;x++)
+            {
+                let options = document.createElement("option");
+                options.value=i;
+                options.text=people[x];
+                selectList.appendChild(options);
+            }  
+
+            let brappend = document.createElement("BR");
+            divParent.appendChild(brappend);
+            divParent.appendChild(brappend);
         }
     }
 
     function retrunSetVal()
     {
-        let peopleArr =[];
-        for(let i=0; i<people.length; i++)
-        {
-            let compNum = i+1;
-            let componentId = "nameinput0"+compNum;
-            if(compNum>9)
-            {
-                componentId="nameinput"+compNum;
-            }
-            people[i] = document.getElementById(componentId).value;   
-        }
-        peopleArr = people;
-        window.opener.setPeoples(peopleArr);
+        //todo
+        //메인화면에 함수를 만들고, 그 함수로 보낼 값을 태운다. 메인화면의 함수는 값을 받아서 자신의 변수에 세팅한다
+
+        // let peopleArr =[];
+        // for(let i=0; i<people.length; i++)
+        // {
+        //     let compNum = i+1;
+        //     let componentId = "nameinput0"+compNum;
+        //     if(compNum>9)
+        //     {
+        //         componentId="nameinput"+compNum;
+        //     }
+        //     people[i] = document.getElementById(componentId).value;   
+        // }
+        // peopleArr = people;
+        // window.opener.setPeoples(peopleArr);
         window.close();
+    }
+
+    function getParameter() 
+    {
+        let url = decodeURI(location.search);
+        let urls = url.split("&");
+        let firstedChek = urls[0].split("=");
+        if(firstedChek[1]==true || firstedChek[1]=="true")
+        {
+            urls = urls[1].split("=");
+            let urlsArr=urls[1].split("^^");
+            return [false,urlsArr];
+        }
+        else
+        {
+            //0=이름, 1=달, 2=픽스 
+            let urlsArr=[];
+            for(let i=0; i<(urls.length-1);i++)
+            {
+                let temp = urls[i+1].split("=");
+                let tempVal =temp[1].split("^^");
+                urlsArr.push(tempVal);
+            }
+            return [true,urlsArr];
+        }
+
+        return false;
+    }
+
+    function ending()
+    {
+        window.close();
+    }
+
+    function reseting()
+    {
+        //todo
+        //함수 실행시 메인화면에서 태워온 값만 가지고 컴포넌트들을 구성하게 한다
     }
 </script>
 <style>
 
-    #chg {
+    #content {
         top: 250px;
         left: 60px;
         position: absolute;
