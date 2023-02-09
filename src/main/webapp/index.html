@@ -45,7 +45,9 @@
     />
     <!--This is the head section-->
     <!-- <style> ... </style> -->
-    <link rel="stylesheet" href="resources/css/style.css" />
+    <link rel="stylesheet" href="resources/css/style.css" rel="stylesheet" type="text/css"/>
+    <script src="../../resources/js/mainLogic.js"></script>
+    <script src="../../resources/js/main.js"></script>
   </head>
   <body>
     <div>
@@ -73,10 +75,10 @@
               data-thq="thq-navbar-nav-links"
               class="page-nav"
             >
-              <span class="page-text">설정하기</span>
-              <span class="page-text1">대상설정</span>
-              <span class="page-text2">파트고정</span>
-              <span class="page-text3">재배치</span>
+              <span id="s_start"    class="page-text"  onclick="theSave()">설정하기</span>
+              <span id="s_setting"  class="page-text1" onclick="openPopUpSetPeopel(0)">대상설정</span>
+              <span id="s_fix"      class="page-text2" onclick="openPopUpSetPeopel(1)">파트고정</span>
+              <span id="s_repeat"   class="page-text3">재배치</span>
             </nav>
           </div>
           <div data-thq="thq-navbar-btn-group" class="page-btn-group"></div>
