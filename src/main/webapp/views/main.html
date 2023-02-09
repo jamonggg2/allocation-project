@@ -63,7 +63,8 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
             {
                 url02 = url02 + "?"+"first=false"
                 let strparam = encodeURI(peopleNames.join("^^"));
-
+                strparam = "&name="+strparam;
+                
                 let monthsTmp = Array.from(fixMonth.keys());
                 let shiftsTmp = Array.from(fixShift.keys());
                 strparam = strparam + "&fixMonthKey=" + encodeURI(monthsTmp.join("^^"));
@@ -74,7 +75,7 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
                 strparam = strparam + "&fixMonthVal=" + encodeURI(monthsTmp.join("^^"));
                 strparam = strparam + "&fixShiftVal=" + encodeURI(shiftsTmp.join("^^"));
 
-                url02 = url02+ "param="+strparam;
+                url02 = url02+strparam;
             }
             window.open(url02, "픽스설정", options);
         }
