@@ -12,8 +12,8 @@
     <div>
         <div class="textTi"><spen>대상 설정</spen></div>
         <div class="textTiSub"><spen>업무를 배치할 사람의 이름을 설정한다</spen></div>
-        <button class="reBtnS" id="endBtn">종료</button>
-        <button class="reBtnS" id="resetBtn" onclick="reseting()">재배치</button>
+        <button class="reBtnS" id="endBtn" onclick="ending()">종료</button>
+        <button class="reBtnS" id="resetBtn" onclick="reseting()">재설정</button>
     </div>
 
     <div>
@@ -134,14 +134,21 @@
                 componentId="nameinput"+compNum;
             }
             let getValue = document.getElementById(componentId).value;
-            opener.peopleNames[i] = getValue;   
+            windowPeople[i] = getValue;
+            
         }
         peopleArr = [...windowPeople];
-        window.opener.setPeople(peopleArr);
+        window.opener.setPeoples(peopleArr);
         window.close();
     }
 
-    function getParameterByName() {
+    function ending()
+    {
+        window.close();
+    }
+    
+    function getParameterByName() 
+    {
         let url = decodeURI(location.search);
         let urls = url.split("=");
         let urlsArr=urls[1].split("^^")
