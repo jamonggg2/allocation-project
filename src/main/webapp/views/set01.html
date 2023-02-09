@@ -94,14 +94,32 @@
 <script>
 
     
-    let windowPeople;
+    let windowPeople=[];
 
     window.onload = openstart;
     function openstart()
     {
-        let strparam = getParameterByName();
-        windowPeople= strparam;
-        reseting();
+        let strparam = getParameter();
+
+        if(false != strparam)
+        {
+            windowPeople= strparam;
+            reseting();
+        }
+        else
+        {
+            //첫 세팅 화면 진입 경우, 초기값을 배열로 삼는다
+            for(let i=0; i<13; i++)
+            {
+                let compNum = i+1;
+                let componentId = "nameinput0"+compNum;
+                if(compNum>9)
+                {
+                    componentId="nameinput"+compNum;
+                }
+                windowPeople.push(document.getElementById(componentId).value);   
+            }
+        }
     }
 
     function reseting()
@@ -146,13 +164,24 @@
     {
         window.close();
     }
-    
-    function getParameterByName() 
+
+    function getParameter() 
     {
         let url = decodeURI(location.search);
-        let urls = url.split("=");
-        let urlsArr=urls[1].split("^^")
-        return urlsArr;
+        let urls = url.split("&");
+        let firstedChek = urls[0].split("=");
+        if(firstedChek[1]==true || firstedChek[1]=="true")
+        {
+            return false;
+        }
+        else
+        {
+            urls = urls[1].split("=");
+            let urlsArr=urls[1].split("^^");
+            return urlsArr;
+        }
+
+        return false;
     }
 
 

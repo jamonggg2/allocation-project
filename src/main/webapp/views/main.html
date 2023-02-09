@@ -25,6 +25,8 @@ const fixMonth = new Map([[2,6],[3,1],[4,0],[8,6],[10,7],[7,7],[9,10],[1,1]]);
 const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
 
     const peopleNames= ['이름01','이름02','이름03','이름04','이름05','이름06','이름07','이름08','이름09','이름10','이름11','이름12','이름13'];
+    let nameSetyetfirst = true;
+    let fixSetyetfirst = true;
 
     function openPopUpSetPeopel(val)
     {
@@ -33,15 +35,36 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
         if(val==0)
         {
             let url01 = "set01.html";
-            let strparam = encodeURI(peopleNames.join("^^"));
-            url01 = url01 + "?"+"param ="+strparam;
+            if(nameSetyetfirst)
+            {
+                url01 = url01 + "?first=true";
+                nameSetyetfirst = false;
+            }
+            else
+            {
+                let strparam = encodeURI(peopleNames.join("^^"));
+                url01 = url01 + "?"+"first=false&" + "param="+strparam;
+            }
             window.open(url01, "대상설정", options);
 
 
         }
         else if(val ==1)
         {
-            window.open("set02.html", "픽스설정", options);
+            let url02 = "set02.html";
+            if(nameSetyetfirst)
+            {
+                url02 = url02 + "?first=true";
+                fixSetyetfirst = false;
+            }
+            else
+            {
+                let strparam = encodeURI(peopleNames.join("^^"));
+                strparam = strparam + "&fixMonth=" + encodeURI(fixMonth.entries.join("^^"));
+                strparam = strparam + "&fixShift=" + encodeURI(fixShift.entries.join("^^"));
+                url02 = url02 + "?"+"first=false&" + "param="+strparam;
+            }
+            window.open(url02, "픽스설정", options);
         }
           
     }
