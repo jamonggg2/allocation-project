@@ -52,17 +52,29 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
         else if(val ==1)
         {
             let url02 = "set02.html";
-            if(nameSetyetfirst)
+            if(fixSetyetfirst)
             {
                 url02 = url02 + "?first=true";
+                let strparam = encodeURI(peopleNames.join("^^"));
+                url02 = url02 + "&param="+strparam;
                 fixSetyetfirst = false;
             }
             else
             {
+                url02 = url02 + "?"+"first=false"
                 let strparam = encodeURI(peopleNames.join("^^"));
-                strparam = strparam + "&fixMonth=" + encodeURI(fixMonth.entries.join("^^"));
-                strparam = strparam + "&fixShift=" + encodeURI(fixShift.entries.join("^^"));
-                url02 = url02 + "?"+"first=false&" + "param="+strparam;
+
+                let monthsTmp = Array.from(fixMonth.keys());
+                let shiftsTmp = Array.from(fixShift.keys());
+                strparam = strparam + "&fixMonthKey=" + encodeURI(monthsTmp.join("^^"));
+                strparam = strparam + "&fixShiftKey=" + encodeURI(shiftsTmp.join("^^"));
+
+                monthsTmp = Array.from(fixMonth.values());
+                shiftsTmp = Array.from(fixShift.values());
+                strparam = strparam + "&fixMonthVal=" + encodeURI(monthsTmp.join("^^"));
+                strparam = strparam + "&fixShiftVal=" + encodeURI(shiftsTmp.join("^^"));
+
+                url02 = url02+ "param="+strparam;
             }
             window.open(url02, "픽스설정", options);
         }
