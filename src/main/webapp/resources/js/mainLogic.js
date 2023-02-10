@@ -21,8 +21,8 @@ const setPeople =
     [12,11,10,9,8,7,6,5,4,3,2,1]
 ];
 
-const names = ["GI","CR","LV","VS","BP","ENBR","PDS","ICU"];
-const fullShift =["GI","CR","LV","VS","BP","ENBR","PDS","ICU","보라매","암센터"];
+const names = ["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8"];
+const fullShift =["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8","보라매","암센터"];
 
 
 //방식
