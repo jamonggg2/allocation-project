@@ -62,7 +62,6 @@ function doit ()
             {
                 if(arr[i][indexVa]==fixShiftVal) 
                 {
-                    cantChIndx = allIndexArr.filter((value)=> !allIndexArr.includes(value));
                     if(!cantChIndx.includes(indexVa))
                     {
                         break;
@@ -72,7 +71,7 @@ function doit ()
 
                 if(indexVa>arr[i].length)
                 {
-                    alert((monthKey[i] +3)+"달에 "+fullShift[fixShiftVal]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                    alert((monthKey[i] +3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                     break;
                 }
             }
@@ -98,7 +97,7 @@ function doit ()
             //교환불가!
             if(!retrunVal[0])
             {
-                alert((fixMonth.get(i) + 3)+"달에 "+fullShift[fixShiftVal]+" 값을 가질수 없습니다. 다른 사람과 겹칩니다 fix");
+                alert((fixMonth.get(i) + 3)+"달에 "+fullShift[(fixShiftVal-1)]+" 값을 가질수 없습니다. 다른 사람과 겹칩니다 fix");
             }
             else
             {
@@ -155,6 +154,7 @@ function doit ()
                         if(-1 != arr[nonameArr[z]].indexOf(fixShiftVal))
                         {
                             arr = swapRowsOnetoOne(arr, nonameArr[z], i);
+                            break;
                         }
                     }
                 }
@@ -163,9 +163,14 @@ function doit ()
                 let countBol01=false;
                 while(true)
                 {
+                    if(cantChIndx.includes(fixMonthVal))
+                    {
+                        alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        break;
+                    }
+
                     if(arr[i][indexVa]==fixShiftVal) 
                     {
-                        cantChIndx = allIndexArr.filter((value)=> !allIndexArr.includes(value));
                         if(!cantChIndx.includes(indexVa))
                         {
                             countBol01=true;
@@ -176,7 +181,7 @@ function doit ()
 
                     if(indexVa>arr[i].length)
                     {
-                        alert((fixMonthVal+3)+"달에 "+fullShift[fixShiftVal]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                         break;
                     }
                 }
@@ -225,9 +230,14 @@ function doit ()
                 let countBol01=false;
                 while(true)
                 {
+                    if(cantChIndx.includes(fixMonthVal))
+                    {
+                        alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        break;
+                    }
+
                     if(arr[i][indexVa]==fixShiftVal) 
                     {
-                        cantChIndx = allIndexArr.filter((value)=> !allIndexArr.includes(value));
                         if(!cantChIndx.includes(indexVa))
                         {
                             countBol01=true;
@@ -238,7 +248,7 @@ function doit ()
 
                     if(indexVa>arr[i].length)
                     {
-                        alert(fixMonthVal+"달에 "+fixShiftVal+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                         break;
                     }
                 }
