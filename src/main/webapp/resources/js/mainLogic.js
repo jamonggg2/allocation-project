@@ -21,7 +21,8 @@ const setPeople =
     [12,11,10,9,8,7,6,5,4,3,2,1]
 ];
 
-const names = ['본원1','본원2','본원3', '본원4','본원5', '본원6', '본원7','본원8'];
+const names = ["GI","CR","LV","VS","BP","ENBR","PDS","ICU"];
+const fullShift =["GI","CR","LV","VS","BP","ENBR","PDS","ICU","보라매","암센터"];
 
 
 //방식
@@ -29,11 +30,6 @@ const names = ['본원1','본원2','본원3', '본원4','본원5', '본원6', '�
 //픽스를 중심으로 랜덤으로 변경한다
 
 function theSave() {
-
-    //todo
-    //설정에 따라서 이름, 시프트이름을 바꿀수있게
-    //설정은 팝업으로?
-    //열배치바꾸기 함수로 어케 뺄수없나 
 
     doit(selectedInx,fullArr);
     
@@ -76,7 +72,7 @@ function doit ()
 
                 if(indexVa>arr[i].length)
                 {
-                    alert(monthKey[i]+"달에 "+fixShiftVal+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                    alert((monthKey[i] +3)+"달에 "+fullShift[fixShiftVal]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                     break;
                 }
             }
@@ -102,7 +98,7 @@ function doit ()
             //교환불가!
             if(!retrunVal[0])
             {
-                alert(fixMonth.get(i)+"달에 "+fixShiftVal+" 값을 가질수 없습니다. 다른 사람과 겹칩니다 fix");
+                alert((fixMonth.get(i) + 3)+"달에 "+fullShift[fixShiftVal]+" 값을 가질수 없습니다. 다른 사람과 겹칩니다 fix");
             }
             else
             {
@@ -180,7 +176,7 @@ function doit ()
 
                     if(indexVa>arr[i].length)
                     {
-                        alert((fixMonthVal+3)+"달에 "+fixShiftVal+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        alert((fixMonthVal+3)+"달에 "+fullShift[fixShiftVal]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                         break;
                     }
                 }
