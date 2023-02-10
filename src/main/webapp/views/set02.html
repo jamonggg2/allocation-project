@@ -13,10 +13,9 @@
         <div class="textTi"><spen>픽스 설정</spen></div>
         <div class="textTiSub"><spen>업무를 픽스할 달과 해당 업무를 선택한다</spen></div>
         <button class="reBtnS" id="endBtn" onclick="ending()">종료</button>
-        <button class="reBtnS" id="resetBtn" onclick="reseting()">재배치</button>
+        <!-- <button class="reBtnS" id="resetBtn" onclick="reseting()">재배치</button> -->
         <button class="startBtnS" id="mainBtn" onclick="retrunSetVal()">설정완료</button>
-        <!-- todo  -->
-        <!-- 픽스를 위한 컴포넌트를 추가하는 버튼. 클릭시 번호텍스트, 이름, 픽스달, 픽스자리 선택을 위한 드롭박스가 출력되어야 한다 -->
+        <button class="reBtnS" id="addBtn" onclick="addShift()">픽스 추가하기</button>
     </div>
 
     <div id="content">
@@ -26,17 +25,22 @@
     let monthMap = new Map();
     let shiftMap = new Map();
     let people = [];
+    let count=0; //현재 화면에 출력되어있는 입력 컴포넌드 갯수
+
+    //기본값 하드코딩
+    let month = [3,4,5,6,7,8,9,10,11,12,1,2];
+    let shift = [1,2,3,4,5,6,7,8,9,10];
+    let shiftName = ["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8","보라매","암센터"];
 
     window.onload = openstart;
     function openstart(event)
     {
         let strparam = getParameter();
-
+        let tempParam = strparam[1];
         if(false != strparam[0])
         {
-            //분리한 파라매터를 조립한다
-            let tempParam = strparam[1];
             people = tempParam[0];
+            //분리한 파라매터를 조립한다
             let lengths = tempParam[1].length;
             for(let i=0;i<lengths;i++)
             {
@@ -52,51 +56,118 @@
         }
         else
         {
+            people = tempParam;
             //첫 세팅 화면 진입 경우, 1개의 선택 컴포넌트를 생성한다
-            nameArr = strparam[1];
-            let theParent = document.getElementById("content");
-            theParent.innerHTML="<span>01 </span>"
-
-            let selectList = document.createElement("select");
-            selectList.id ="select0";
-            theParent.appendChild(selectList);
-            for(let i=0;i<nameArr.length;i++)
-            {
-                let options = document.createElement("option");
-                options.value=i;
-                options.text=nameArr[i];
-                selectList.appendChild(options);
-            }
+            addShift();
         }
+    }
+
+    function addShift()
+    {
+
+        //새로생성하는 컴포넌트
+        let theParent = document.getElementById("content");
+        let makeaddDiv = document.createElement("div");
+        if(count<10)
+        {
+            makeaddDiv.id = "innerDiv0"+(count+1);
+        }
+        else
+        {
+            makeaddDiv.id = "innerDiv"+(count+1);
+        }
+        theParent.appendChild(makeaddDiv);
+
+        //텍스트삽입
+        if(count<10)
+        {
+            makeaddDiv.innerText ="0"+(count+1)+" ";     
+        }
+        else
+        {
+            makeaddDiv.innerText =(count+1)+" ";    
+        }
+
+        //이름셀렉트삽입
+        let selectList = document.createElement("select");
+        selectList.id = "select"+count;
+        makeaddDiv.appendChild(selectList);
+        for(let x=0;x<people.length;x++)
+        {
+            let options = document.createElement("option");
+            options.value=x;
+            options.text=people[x];
+            selectList.appendChild(options);
+        }
+
+        //달셀렉트삽입
+        let selectMonList = document.createElement("select");
+        selectMonList.id = "selectMon"+count;
+        makeaddDiv.appendChild(selectMonList);
+        for(let x=0;x<12;x++)
+        {
+            let options = document.createElement("option");
+            options.value=x;
+            options.text=month[x];
+            selectMonList.appendChild(options);
+        }
+
+        //쉽셀렉트삽입
+        let selectshiftList = document.createElement("select");
+        selectshiftList.id = "selectShift"+count;
+        makeaddDiv.appendChild(selectshiftList);
+        for(let x=0;x<10;x++)
+        {
+            let options = document.createElement("option");
+            options.value=shift[x];
+            options.text=shiftName[x];
+            selectshiftList.appendChild(options);
+        }
+
+        //br삽입
+        let inner = theParent.innerHTML;
+        inner = inner+"<br>";
+        theParent.innerHTML = inner;
+        count = count+1;
+
+        //todo 값 있던데로 세팅
+
     }
 
     function seting()
     {
+        count =0;
+        let setMonthKeys = Array.from(monthMap.keys());
+
         //메인화면에서 가져온 값으로 이미 설정된 픽스값 세팅
         let theParent = document.getElementById("content");
-        let str ="<div id='innerDiv01'></div>";
-        for(let i=0; i<monthMap.size; i++)
+        let str ="<div id='innerDiv01'></div><br>";
+        for(let i=1; i<monthMap.size; i++)
         {
+            let divParent;
             str = str+ "<div id=";
             if(i<9)
             {
-                str = str+"'innerDiv0"+(i+1)+"'> </div>"
+                str = str+"'innerDiv0"+(i+1)+"'> </div><br>"
             }
             else
             {
-                str = str+"'innerDiv"+(i+1)+"'> </div>"
+                str = str+"'innerDiv"+(i+1)+"'> </div><br>"
             }
            
             theParent.innerHTML =str;
+
+            count = count+1;
         }
 
         for(let i=0; i<monthMap.size; i++)
         {
             let divParent;
+            let nameindex = setMonthKeys[i];
             if(i<9)
             {
                 divParent = document.getElementById("innerDiv0"+(i+1));
-                divParent.innerText ="0"+(i+1)+" ";
+                divParent.innerText ="0"+(i+1)+" ";     
             }
             else
             {
@@ -104,41 +175,77 @@
                 divParent.innerText= i+" ";
             }
 
+            //이름선택 드롭박스 출력
             let selectList = document.createElement("select");
             selectList.id = "select"+i;
             divParent.appendChild(selectList);
             for(let x=0;x<people.length;x++)
             {
                 let options = document.createElement("option");
-                options.value=i;
+                options.value=x;
                 options.text=people[x];
                 selectList.appendChild(options);
-            }  
+            }
+            selectList.value = nameindex;
 
-            let brappend = document.createElement("BR");
-            divParent.appendChild(brappend);
-            divParent.appendChild(brappend);
+            //월선택 드롭박스 출력
+            let selectMonList = document.createElement("select");
+            selectMonList.id = "selectMon"+i;
+            divParent.appendChild(selectMonList);
+
+            for(let x=0;x<12;x++)
+            {
+                let options = document.createElement("option");
+                options.value=x;
+                options.text=month[x];
+                selectMonList.appendChild(options);
+            }
+            //map에서 맞는값을 꺼내서 골라준다
+            let themonth = monthMap.get(nameindex);
+            selectMonList.value = themonth;
+
+            //픽스선택 드롭박스 출력
+            let selectshiftList = document.createElement("select");
+            selectshiftList.id = "selectShift"+i;
+            divParent.appendChild(selectshiftList);
+
+            for(let x=0;x<10;x++)
+            {
+                let options = document.createElement("option");
+                options.value=shift[x];
+                options.text=shiftName[x];
+                selectshiftList.appendChild(options);
+            }
+            //map에서 맞는값을 꺼내서 골라준다
+            let theshift = shiftMap.get(nameindex);
+            selectshiftList.value = theshift;
+            
+            
         }
     }
 
     function retrunSetVal()
     {
-        //todo
-        //메인화면에 함수를 만들고, 그 함수로 보낼 값을 태운다. 메인화면의 함수는 값을 받아서 자신의 변수에 세팅한다
+        let monMap = new Map();
+        let shfMap = new Map();
+        for(let i=0; i<count; i++)
+        {
+            let nameSelectedId = "select"+i;
+            let nameinedx = document.getElementById(nameSelectedId).value;   
 
-        // let peopleArr =[];
-        // for(let i=0; i<people.length; i++)
-        // {
-        //     let compNum = i+1;
-        //     let componentId = "nameinput0"+compNum;
-        //     if(compNum>9)
-        //     {
-        //         componentId="nameinput"+compNum;
-        //     }
-        //     people[i] = document.getElementById(componentId).value;   
-        // }
-        // peopleArr = people;
-        // window.opener.setPeoples(peopleArr);
+            let monthSelectedId = "selectMon"+i;
+            let monthindex = document.getElementById(monthSelectedId).value; 
+
+            let shiftSelectiedId = "selectShift"+i;
+            let shiftindex = document.getElementById(shiftSelectiedId).value; 
+
+            monMap.set(nameinedx,monthindex);
+            shfMap.set(nameinedx,shiftindex);
+        }
+        monthMap = monMap;
+        shiftMap = shfMap;
+
+        window.opener.setfixs(monthMap, shiftMap);
         window.close();
     }
 
@@ -200,6 +307,11 @@
   
     #resetBtn {
         top: 90px;
+        left: 50px;
+    }
+
+    #addBtn{
+        top: 200px;
         left: 50px;
     }
   

@@ -19,10 +19,10 @@
     </div>
 </body>
 <script type="text/javascript">
-//테스트 입력값
-//0달=3월 ~, 10달=1월, 12달=2월
-const fixMonth = new Map([[2,6],[3,1],[4,0],[8,6],[10,7],[7,7],[9,10],[1,1]]);
-const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
+    //테스트 입력값
+    //0달=3월 ~, 10달=1월, 12달=2월
+    const fixMonth = new Map();
+    const fixShift = new Map();
 
     const peopleNames= ['이름01','이름02','이름03','이름04','이름05','이름06','이름07','이름08','이름09','이름10','이름11','이름12','이름13'];
     let nameSetyetfirst = true;
@@ -88,6 +88,29 @@ const fixShift = new Map([[2,9],[3,2],[4,5],[8,9],[10,6],[7,3],[9,10],[1,1]]);
         for(let i=0;i<arr.length;i++)
         {
             peopleNames[i] = arr[i];
+        }
+    }
+
+    function setfixs(monMap, sftMap)
+    {
+        fixMonth.clear();
+        let monKeys = Array.from(monMap.keys());
+        let monVal = Array.from(monMap.values());
+        monKeys = monKeys.map((i)=>Number(i));
+        monVal = monVal.map((i)=>Number(i));
+        for(let i=0;i<monKeys.length;i++)
+        {
+            fixMonth.set(monKeys[i],monVal[i]);
+        }
+
+        fixShift.clear();
+        let sftKeys = Array.from(sftMap.keys());
+        let sftVal = Array.from(sftMap.values());
+        sftKeys = sftKeys.map((i)=>Number(i));
+        sftVal = sftVal.map((i)=>Number(i));
+        for(let i=0;i<sftKeys.length;i++)
+        {
+            fixShift.set(sftKeys[i],sftVal[i]);
         }
     }
 

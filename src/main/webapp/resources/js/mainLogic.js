@@ -141,7 +141,7 @@ function doit ()
         let nonameArr = [0,1,2,3,4,5,6,7,8,9,10,11,12];
         nonameArr = nonameArr.filter((value)=>!nameArr.includes(value));
 
-        if(-1!=monthKey.indexOf(i)) //만약 픽스를 선택했으면
+        if(-1!=monthKey.indexOf(i) || -1!=monthKey.indexOf("'"+i+"'")) //만약 픽스를 선택했으면
         {
             //픽스값을 가진 사람을 본인으로 한다
             let retrunVal01 = swapRowsWithFix(arr,0, 8,i,nonameArr,monthKey,fixMonthVal);
@@ -150,6 +150,19 @@ function doit ()
             if(!retrunVal01[0])
             {
                 //열교환한다
+                //픽스값 자체가 없는지 확인한 후, 없으면 있는 사람으로 열교환 한다
+                let checkIndex = arr[i].indexOf(fixShiftVal);
+                if(-1 == checkIndex)
+                {
+                    for(let z=0;z<nonameArr.length;z++)
+                    {
+                        if(-1 != arr[nonameArr[z]].indexOf(fixShiftVal))
+                        {
+                            arr = swapRowsOnetoOne(arr, nonameArr[z], i);
+                        }
+                    }
+                }
+
                 let indexVa =0;
                 let countBol01=false;
                 while(true)
@@ -167,7 +180,7 @@ function doit ()
 
                     if(indexVa>arr[i].length)
                     {
-                        alert(fixMonthVal+"달에 "+fixShiftVal+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                        alert((fixMonthVal+3)+"달에 "+fixShiftVal+"를 가질수 없습니다. 다른 사람과 겹칩니다");
                         break;
                     }
                 }
@@ -200,7 +213,18 @@ function doit ()
             //교환불가!
             if(!retrunVal[0])
             {
-                //열교환한다
+                //픽스값 자체가 없는지 확인한 후, 없으면 있는 사람으로 열교환 한다
+                let checkIndex = arr[i].indexOf(fixShiftVal);
+                if(-1 == checkIndex)
+                {
+                    for(let z=0;z<nonameArr.length;z++)
+                    {
+                        if(-1 != arr[nonameArr[z]].indexOf(fixShiftVal))
+                        {
+                            arr = swapRowsOnetoOne(arr, nonameArr[z], i);
+                        }
+                    }
+                }
                 let indexVa =0;
                 let countBol01=false;
                 while(true)
@@ -486,7 +510,7 @@ function swapRows(arr,startIndex, endindex,i,mothKeys)
     return [countBol,cngPeople];
 }
 
-//픽스 상관없이 row로 맞교환
+//픽스 상관없이 row로 맞교환가능한거 찾아서하기
 function swapRowsWithFix(arr,startIndex, endindex,i,nonameArr, mothKeys, month)
 {
     let monthKey = mothKeys;
@@ -519,6 +543,16 @@ function swapRowsWithFix(arr,startIndex, endindex,i,nonameArr, mothKeys, month)
     }
 
     return [countBol,cngPeople];
+}
+
+//row 맞
+function swapRowsOnetoOne (arr,swapRow01, swapRow02)
+{
+    let tmp = [...arr[swapRow01]]; //바꿈당할사람
+    let tmp02 = [...arr[swapRow02]]; //바꿔질사람
+    arr[swapRow02] = tmp;
+    arr[swapRow01] = tmp02;
+    return arr;
 }
 
 function serchSwapedIndex (arr, canIndex, fixmonth, fixshift)
