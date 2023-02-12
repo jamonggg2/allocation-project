@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="utf-8" />
     <meta property="twitter:card" content="summary_large_image" />
+    <script src="../resources/js/set01.js"></script>
 
     <style data-tag="reset-style-sheet">
       html {  line-height: 1.15;}body {  margin: 0;}* {  box-sizing: border-box;  border-width: 0;  border-style: solid;}p,li,ul,pre,div,h1,h2,h3,h4,h5,h6,figure,blockquote,figcaption {  margin: 0;  padding: 0;}button {  background-color: transparent;}button,input,optgroup,select,textarea {  font-family: inherit;  font-size: 100%;  line-height: 1.15;  margin: 0;}button,select {  text-transform: none;}button,[type="button"],[type="reset"],[type="submit"] {  -webkit-appearance: button;}button::-moz-focus-inner,[type="button"]::-moz-focus-inner,[type="reset"]::-moz-focus-inner,[type="submit"]::-moz-focus-inner {  border-style: none;  padding: 0;}button:-moz-focus,[type="button"]:-moz-focus,[type="reset"]:-moz-focus,[type="submit"]:-moz-focus {  outline: 1px dotted ButtonText;}a {  color: inherit;  text-decoration: inherit;}input {  padding: 2px 4px;}img {  display: block;}html { scroll-behavior: smooth  }
@@ -40,7 +41,30 @@
     />
     <!--This is the head section-->
     <!-- <style> ... </style> -->
-    <link rel="stylesheet" href="../resources/css/style02.css" />
+    <link rel="stylesheet" href="../resources/css/style.css" />
+
+    <script type="text/javascript">
+
+      function btnNext(){
+
+/*
+        let form = document.createElement('form');
+        form.action = '/views2/set02.html';
+        form.method = 'POST';
+
+        form.innerHTML = '<input name="q" value="테스트">';
+
+        document.body.append(form);*/
+        let form = document.getElementById("form_set01");
+        form.method = 'POST';
+        form.action = '/views2/set02.html';
+
+        form.submit();
+        //location.href='/views2/set02.html';
+      }
+
+
+    </script>
   </head>
   <body>
     <div>
@@ -63,10 +87,10 @@
                   <span class="navigation-links-text">
                     <span>설정하기</span>
                   </span>
-                  <span class="navigation-links-text1 l_menu_selected" >
+                  <span class="navigation-links-text1">
                     <span>대상설정</span>
                   </span>
-                  <span class="navigation-links-text2" onclick="location.href='set02.html'">
+                  <span class="navigation-links-text2">
                     <span>파트고정</span>
                   </span>
                   <span class="navigation-links-text3">
@@ -131,14 +155,16 @@
         </div>
         <div class="main_container">
           <div class="page1-container02">
-            <h1 class="menu_label">대상 설정</h1>
+            <h1 class="page1-text menu_label">대상 설정</h1>
+            <button class="page1-button button" onclick="btnNext()">&gt;&gt;</button>
           </div>
           <div class="page1-container03">
             <div class="l_container">
+              <form id="form_set01">
               <div class="s_container">
                 <div class="page1-container06">
                   <label class="page1-text01">01</label>
-                  <input
+                  <input id = "people_01" name="people_01"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -146,7 +172,7 @@
                 </div>
                 <div class="page1-container07">
                   <label class="page1-text02">08</label>
-                  <input
+                  <input id = "people_08" name = "people_08"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -156,7 +182,7 @@
               <div class="s_container">
                 <div class="page1-container09">
                   <label class="page1-text03">02</label>
-                  <input
+                  <input id = "people_02" name = "people_02"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -164,7 +190,7 @@
                 </div>
                 <div class="page1-container10">
                   <label class="page1-text04">09</label>
-                  <input
+                  <input id = "people_09" name = "people_09"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -174,7 +200,7 @@
               <div class="s_container">
                 <div class="page1-container12">
                   <label class="page1-text05">03</label>
-                  <input
+                  <input id = "people_03" name = "people_03"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -182,7 +208,7 @@
                 </div>
                 <div class="page1-container13">
                   <label class="page1-text06">10</label>
-                  <input
+                  <input id = "people_10" name = "people_10"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -192,7 +218,7 @@
               <div class="s_container">
                 <div class="page1-container15">
                   <label class="page1-text07">04</label>
-                  <input
+                  <input id = "people_04" name = "people_04"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -200,7 +226,7 @@
                 </div>
                 <div class="page1-container16">
                   <label class="page1-text08">11</label>
-                  <input
+                  <input id = "people_11" name = "people_11"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -210,7 +236,7 @@
               <div class="s_container">
                 <div class="page1-container18">
                   <label class="page1-text09">05</label>
-                  <input
+                  <input id = "people_05" name = "people_05"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -218,7 +244,7 @@
                 </div>
                 <div class="page1-container19">
                   <label class="page1-text10">12</label>
-                  <input
+                  <input id = "people_12" name = "people_12"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -228,7 +254,7 @@
               <div class="s_container">
                 <div class="page1-container21">
                   <label class="page1-text11">06</label>
-                  <input
+                  <input id = "people_06" name = "people_06"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
@@ -236,7 +262,7 @@
                 </div>
                 <div class="page1-container22">
                   <label class="page1-text12">13</label>
-                  <input
+                  <input id = "people_13" name = "people_13"
                     type="text"
                     placeholder="이름을 입력하세요"
                     class="input"
@@ -246,13 +272,14 @@
               <div class="s_container">
                 <div class="page1-container24">
                   <label class="page1-text13">07</label>
-                  <input
+                  <input id = "people_07" name = "people_07"
                     type="text"
                     placeholder=" 이름을 입력하세요"
                     class="input"
                   />
                 </div>
               </div>
+              </form>
             </div>
           </div>
         </div>

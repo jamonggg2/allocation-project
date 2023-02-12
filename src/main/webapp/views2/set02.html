@@ -41,6 +41,7 @@
     <!--This is the head section-->
     <!-- <style> ... </style> -->
     <link rel="stylesheet" href="../resources/css/style02.css" />
+
   </head>
   <body>
     <div>
@@ -144,7 +145,7 @@
               <div class="d_row s_container">
                 <div id="col_1" class="page2-container08">
                   <label class="num_label">01</label>
-                  <select class="page2-select">
+                  <select class="page2-select selectPeople">
                     <option value="Option 1">Option 1</option>
                     <option value="Option 2">Option 2</option>
                     <option value="Option 3">Option 3</option>
@@ -401,10 +402,15 @@
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
     <script type="text/javascript">
+        $(document).ready(function() {
 
+          let selectEl = document.querySelector("#selectPeople");
+          var objOption = document.createElement("option");
+          objOption.text = selectEl.length+1 + "번";
+          objOption.value = selectEl.length+1;
+          selectEl.options.add(objOption);
 
-
-
+        });
     </script>
   </body>
 </html>
