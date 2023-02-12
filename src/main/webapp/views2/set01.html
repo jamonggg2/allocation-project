@@ -55,12 +55,18 @@
         form.innerHTML = '<input name="q" value="테스트">';
 
         document.body.append(form);*/
-        let form = document.getElementById("form_set01");
+        /*let form = document.getElementById("form_set01");
         form.method = 'POST';
         form.action = '/views2/set02.html';
 
-        form.submit();
-        //location.href='/views2/set02.html';
+        form.submit();*/
+
+        let id_ = document.getElementById("people_01");
+        document.cookie = id_.id + "=" + "id_value";
+        location.href='/views2/set02.html';
+
+
+
       }
 
 
