@@ -23,7 +23,7 @@ const setPeople =
 
 const names = ["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8"];
 const fullShift =["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8","보라매","암센터"];
-
+let peopleNames;
 
 //방식
 //겹치지않는 랜덤이 아닌 전체 배열을 만든다
@@ -58,21 +58,24 @@ function doit ()
             //자기배열 안에서 원하는 값을 가진 위치를 찾고, 그 위치와 맞교환한다
             let fixShiftVal = fixShift.get(i);
             let indexVa =0;
-            while(true)
+            let whileBol02 = true;
+            while(whileBol02)
             {
                 if(arr[i][indexVa]==fixShiftVal) 
                 {
                     if(!cantChIndx.includes(indexVa))
                     {
-                        break;
+                        whileBol02 = false;
                     }
+                    else
+                    indexVa = indexVa+1;
                 }
                 else indexVa = indexVa+1;
 
                 if(indexVa>arr[i].length)
                 {
-                    alert((monthKey[i] +3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
-                    break;
+                    alert((fixMonth.get(i) +3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
+                    whileBol02 = false;
                 }
             }
 
@@ -161,12 +164,13 @@ function doit ()
 
                 let indexVa =0;
                 let countBol01=false;
-                while(true)
+                let whileBol00 = true;
+                while(whileBol00)
                 {
                     if(cantChIndx.includes(fixMonthVal))
                     {
                         alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
-                        break;
+                        whileBol00 = false;
                     }
 
                     if(arr[i][indexVa]==fixShiftVal) 
@@ -174,15 +178,17 @@ function doit ()
                         if(!cantChIndx.includes(indexVa))
                         {
                             countBol01=true;
-                            break;
+                            whileBol00 = false;
                         }
+                        else
+                        indexVa = indexVa+1;
                     }
                     else indexVa = indexVa+1;
 
                     if(indexVa>arr[i].length)
                     {
                         alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
-                        break;
+                        whileBol00 = false;
                     }
                 }
 
@@ -228,12 +234,13 @@ function doit ()
                 }
                 let indexVa =0;
                 let countBol01=false;
-                while(true)
+                let whileBol01 = true;
+                while(whileBol01)
                 {
                     if(cantChIndx.includes(fixMonthVal))
                     {
                         alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
-                        break;
+                        whileBol01 = false;
                     }
 
                     if(arr[i][indexVa]==fixShiftVal) 
@@ -241,15 +248,17 @@ function doit ()
                         if(!cantChIndx.includes(indexVa))
                         {
                             countBol01=true;
-                            break;
+                            whileBol01 = false;
                         }
+                        else
+                        indexVa = indexVa+1;
                     }
                     else indexVa = indexVa+1;
 
                     if(indexVa>arr[i].length)
                     {
                         alert((fixMonthVal+3)+"달에 "+fullShift[(fixShiftVal-1)]+"를 가질수 없습니다. 다른 사람과 겹칩니다");
-                        break;
+                        whileBol01 = false;
                     }
                 }
 

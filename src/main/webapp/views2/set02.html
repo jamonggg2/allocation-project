@@ -27,6 +27,22 @@
         background-color: var(--dl-color-gray-white);
 
       }
+
+
+      table {
+          border-collapse: collapse;
+          width: 100%;
+      }
+        
+      th, td {
+      border: 1px solid #dddddd;
+      text-align: left;
+      padding: 8px;
+      }
+
+      th {
+      background-color: #dddddd;
+      }
     </style>
     <link
       rel="stylesheet"
@@ -61,18 +77,18 @@
                 <nav
                   class="navigation-links-nav navigation-links-root-class-name9"
                 >
-                  <span class="navigation-links-text">
+                  <span class="navigation-links-text" onclick="theSave()">
                     <span>설정하기</span>
                   </span>
-                  <span class="navigation-links-text1" onclick="location.href='set01.html'">
-                    <span>대상설정</span>
+                  <span class="navigation-links-text1">
+                    <span>대상/픽스 설정하기</span>
                   </span>
-                  <span class="navigation-links-text2 l_menu_selected">
+                  <!-- <span class="navigation-links-text2 l_menu_selected">
                     <span>파트고정</span>
                   </span>
                   <span class="navigation-links-text3">
                     <span>재배치</span>
-                  </span>
+                  </span> -->
                 </nav>
               </nav>
               <div data-role="AccordionHeader" class="layout-accordion-header">
@@ -138,256 +154,100 @@
             <div class="l_container">
               <div class="d_row s_container">
                 <div class="page2-container06">
-                  <button class="page2-button button">픽스 추가</button>
-                  <button class="page2-button1 button">설정완료</button>
+                  <button class="page2-button button" onclick="addclick()">픽스 추가</button>
+                  <button class="page2-button1 button" onclick="addSeting()">설정완료</button>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_1" class="page2-container08">
                   <label class="num_label">01</label>
-                  <select class="page2-select selectPeople">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select01">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select02">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select01" id="selectNm0"></select>
+                  <select class="page2-select selectPeople" id="selectMon0"></select>
+                  <select class="page2-select02" id="selectShift0"></select>
                 </div>
                 <div id="col_8" class="page2-container09">
                   <label class="num_label">08</label>
-                  <select class="page2-select03">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select04">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select05">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select04" id="selectNm7"></select>
+                  <select class="page2-select03" id="selectMon7"></select>
+                  <select class="page2-select05" id="selectShift7"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_2" class="page2-container11">
                   <label class="num_label">02</label>
-                  <select class="page2-select06">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select07">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select08">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select07" id="selectNm1"></select>
+                  <select class="page2-select06" id ="selectMon1"></select>
+                  <select class="page2-select08" id="selectShift1"> </select>
                 </div>
                 <div id="col_9" class="page2-container12">
                   <label class="num_label">09</label>
-                  <select class="page2-select09">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select10">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select11">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select10" id="selectNm8"></select>
+                  <select class="page2-select09" id="selectMon8"></select>                  
+                  <select class="page2-select11" id="selectShift8"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_3" class="page2-container14">
                   <label class="num_label">03</label>
-                  <select class="page2-select12">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select13">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select14">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select13" id="selectNm2"></select>
+                  <select class="page2-select12" id="selectMon2"></select>                
+                  <select class="page2-select14" id="selectShift2"></select>
                 </div>
                 <div id="col_10" class="page2-container15">
                   <label class="num_label">10</label>
-                  <select class="page2-select15">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select16">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select17">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select16" id="selectNm9"></select>
+                  <select class="page2-select15" id="selectMon9"></select>
+                  <select class="page2-select17" id="selectShift9"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_4" class="page2-container17">
                   <label class="num_label">04</label>
-                  <select class="page2-select18">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select19">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select20">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select19" id="selectNm3"></select>
+                  <select class="page2-select18" id="selectMon3"></select>                
+                  <select class="page2-select20" id="selectShift3"></select>
                 </div>
                 <div id="col_11" class="page2-container18">
                   <label class="num_label">11</label>
-                  <select class="page2-select21">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select22">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select23">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select22" id="selectNm10"></select>
+                  <select class="page2-select21" id="selectMon10"></select>                 
+                  <select class="page2-select23" id="selectShift10"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_5" class="page2-container20">
                   <label class="num_label">05</label>
-                  <select class="page2-select24">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select25">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select26">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select25" id="selectNm4"></select>
+                  <select class="page2-select24" id="selectMon4"></select>                  
+                  <select class="page2-select26" id="selectShift4"></select>
                 </div>
                 <div id="col_12" class="page2-container21">
                   <label class="num_label">12</label>
-                  <select class="page2-select27">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select28">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select29">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select28" id="selectNm11"></select>
+                  <select class="page2-select27" id="selectMon11"></select>                
+                  <select class="page2-select29" id="selectShift11"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_6" class="page2-container23">
                   <label class="num_label">06</label>
-                  <select class="page2-select30">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select31">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select32">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select31" id="selectNm5"></select>
+                  <select class="page2-select30" id="selectMon5"></select>                
+                  <select class="page2-select32" id="selectShift5"></select>
                 </div>
                 <div id="col_13" class="page2-container24">
                   <label class="num_label">13</label>
-                  <select class="page2-select33">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select34">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select35">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select34" id="selectNm12"></select>
+                  <select class="page2-select33" id="selectMon12"></select>
+                  <select class="page2-select35" id="selectShift12"></select>
                 </div>
               </div>
               <div class="d_row s_container">
                 <div id="col_7" class="page2-container26">
                   <label class="num_label">07</label>
-                  <select class="page2-select36">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select37">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
-                  <select class="page2-select38">
-                    <option value="Option 1">Option 1</option>
-                    <option value="Option 2">Option 2</option>
-                    <option value="Option 3">Option 3</option>
-                  </select>
+                  <select class="page2-select37" id="selectNm6"></select>
+                  <select class="page2-select36" id="selectMon6"></select>
+                  <select class="page2-select38" id="selectShift6"></select>
                 </div>
               </div>
             </div>
@@ -401,16 +261,111 @@
     ></script>
     <script src="https://unpkg.com/@lottiefiles/lottie-player@latest/dist/lottie-player.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.3.min.js" integrity="sha256-pvPw+upLPUjgMXY0G+8O0xUf+/Im1MZjXxxgOcBQBXU=" crossorigin="anonymous"></script>
+    <script src="../resources/js/mainLogic.js"></script>
     <script type="text/javascript">
-        $(document).ready(function() {
 
-          let selectEl = document.querySelector("#selectPeople");
-          var objOption = document.createElement("option");
-          objOption.text = selectEl.length+1 + "번";
-          objOption.value = selectEl.length+1;
-          selectEl.options.add(objOption);
+      //기본값 하드코딩
+      let month = [3,4,5,6,7,8,9,10,11,12,1,2];
+      let shift = [1,2,3,4,5,6,7,8,9,10];
+      let shiftName = ["본원1","본원2","본원3","본원4","본원5","본원6","본원7","본원8","보라매","암센터"];
+      let addCount=0; //현재 화면에 출력되어있는 입력 컴포넌드 갯수
 
-        });
+      let fixMonth = new Map();
+      let fixShift = new Map();
+      let ppeopleNames = [];
+
+      $(document).ready(function() {
+
+        const cookie = document.cookie;
+        const arrayCookie = cookie.split(';').find(c => c.trim().startsWith('peopleArr='));
+        const peopleNamesFull = arrayCookie.split('=')[1];
+        const peopleNameArray = peopleNamesFull.split(',');
+        peopleNames = [...peopleNameArray];
+
+        //이름셀렉트삽입
+        for(let i=0;i<peopleNames.length;i++)
+        {
+          let selectId = document.getElementById("selectNm"+i)
+          for(let x=0;x<peopleNames.length;x++)
+          {
+              let options = document.createElement("option");
+              options.value=x;
+              options.text=peopleNames[x];
+              selectId.appendChild(options);
+          }
+        }
+
+        //달셀렉트 삽입
+        for(let i=0;i<peopleNames.length;i++)
+        {
+          let selectId = document.getElementById("selectMon"+i)
+          for(let x=0;x<month.length;x++)
+          {
+              let options = document.createElement("option");
+              options.value=x;
+              options.text=month[x];
+              selectId.appendChild(options);
+          }
+        }
+
+        //쉬프트셀렉트 삽입
+        for(let i=0;i<peopleNames.length;i++)
+        {
+          let selectId = document.getElementById("selectShift"+i)
+          for(let x=0;x<10;x++)
+          {
+              let options = document.createElement("option");
+              options.value=shift[x];
+              options.text=shiftName[x];
+              selectId.appendChild(options);
+          }
+        }
+
+        //안보이게 처리
+        for(let i=1;i<(peopleNames.length+1);i++)
+        {
+          let divId = document.getElementById("col_"+i);
+          divId.style.display = "none";
+        }
+        addCount =0;
+
+      });
+
+      //픽스추가 누른경우
+      function addclick(){
+
+        addCount = addCount+1;
+        if( addCount>13)
+        {
+          addCount = 13;
+        }
+        else
+        {
+          let divId = document.getElementById("col_"+addCount);
+          divId.style.display = "block";
+        }
+      }
+
+      //설정완료 누른경우
+      function addSeting(){
+
+        //픽스 맵 조립
+        fixMonth.clear();
+        fixShift.clear();
+        for(let i=0; i<addCount;i++){
+          let fixNmIndex = document.getElementById("selectNm"+i).value;
+          let fixMotIndex = document.getElementById("selectMon"+i).value;
+          let fixSftIndex = document.getElementById("selectShift"+i).value;
+
+          fixMonth.set(Number(fixNmIndex),Number(fixMotIndex));
+          fixShift.set(Number(fixNmIndex),Number(fixSftIndex));
+        }
+
+        alert("설정완료");
+      }
+
+      
+
     </script>
   </body>
 </html>
